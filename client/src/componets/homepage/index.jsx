@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { stock_data } from '../../api/index.js';
 import HomeStyle from './Home.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const HomePage = () => {
 	const [stock, setStock] = useState([]);
@@ -77,7 +75,7 @@ function Card({ symbol: name, open: price, pChange: increase }) {
 				<button
 					className={HomeStyle.btn}
 					onClick={handleEmailClick}>
-					<FontAwesomeIcon icon={faEnvelope} /> Email
+					Email
 				</button>
 				<button
 					className={HomeStyle.btn}

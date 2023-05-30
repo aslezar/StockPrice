@@ -3,6 +3,7 @@ import LoginStyles from './Login.module.css';
 import { useGoogleLogin } from '@react-oauth/google';
 import * as api from '../../api/index.js';
 import { useState } from 'react';
+import googleBtn from '../../assests/google_signin_buttons/web/vector/btn_google_light_normal_ios.svg';
 
 const Login = ({ setUser }) => {
 	const [email, setEmail] = useState('');
@@ -14,7 +15,6 @@ const Login = ({ setUser }) => {
 			const signin = async (userData) => {
 				try {
 					const { data } = await api.signIn(userData);
-
 					setUser(data);
 					console.log(data);
 					navigate('/');
@@ -51,47 +51,57 @@ const Login = ({ setUser }) => {
 		<div className={LoginStyles.loginContainer}>
 			<div className={LoginStyles.loginContainerv2}>
 				<h1>Welcome Back</h1>
-				<div className={LoginStyles.inputContainer}>
-					<label>EMAIL</label>
-					<input
-						onChange={(e) => setEmail(e.target.value)}
-						placeholder='Enter your email'
-						type='email'
-						value={email}
-					/>
-				</div>
-
-				<div className={LoginStyles.inputContainer}>
-					<label>PASSWORD</label>
-					<input
-						onChange={(e) => setPassword(e.target.value)}
-						placeholder='Enter your password'
-						type='password'
-						value={password}
-					/>
-				</div>
-
-				<div className={LoginStyles.forgetmeContainer}>
-					<div>
-						{/* to be implemented */}
-						Remember Me <input type='checkbox' />
+				<form onSubmit={handleSubmit}>
+					<div className={LoginStyles.inputContainer}>
+						<label htmlFor='email'>Email</label>
+						<input
+							id='email'
+							onChange={(e) => setEmail(e.target.value)}
+							placeholder='Enter your email'
+							type='email'
+							value={email}
+						/>
 					</div>
-					<div>
-						{/* to be implemented */}
-						{/* <Link to='/account/forgotpassowrd'>Forgot password?</Link> */}
-					</div>
-				</div>
 
-				<button
-					onClick={handleSubmit}
-					className={LoginStyles.loginBTN}>
-					LOGIN
-				</button>
+					<div className={LoginStyles.inputContainer}>
+						<label htmlFor='password'>Password</label>
+						<input
+							id='password'
+							onChange={(e) => setPassword(e.target.value)}
+							placeholder='Enter your password'
+							type='password'
+							value={password}
+						/>
+					</div>
+
+					<div className={LoginStyles.forgetmeContainer}>
+						<div>
+							<label htmlFor='rememberMe'>Remember Me</label>
+							<input
+								id='rememberMe'
+								type='checkbox'
+							/>
+						</div>
+						<div>
+							<a href='/account/forgotpassword'>Forgot password?</a>
+						</div>
+					</div>
+
+					<button
+						type='submit'
+						className={LoginStyles.loginBTN}>
+						LOGIN
+					</button>
+				</form>
 				<span className={LoginStyles.or}>or</span>
 				<button
-					onClick={() => login()}
-					className={LoginStyles.googleBTN}>
-					<i className='fa-brands fa-google'></i> Sign in with google
+					className={LoginStyles.googleBTN}
+					onClick={login}>
+					<img
+						src={googleBtn}
+						alt='Sign in with google'
+					/>
+					<span>Sign in with Google</span>
 				</button>
 
 				<span className={LoginStyles.notreg}>

@@ -69,20 +69,26 @@
 }
 
 .googleBTN {
-	padding: 15px;
+	display: flex;
 	width: 100%;
-	border: 0px none;
-	background-color: #797389;
-	border-radius: 0.5rem;
-	color: white;
-	transition: all 0.4s;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	background-color: #4285f4;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .googleBTN:hover {
-	transition: all 0.4s;
-	background-color: white;
-	border: 1px solid black;
-	color: black;
+	background-color: #f1f1f1;
+}
+
+.googleBTN img {
+	width: 25px; /* Adjust the size of the image as needed */
+	height: 25px;
+	margin-right: 10px; /* Add spacing between the image and the text */
 }
 
 .singupBTN {

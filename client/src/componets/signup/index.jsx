@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google';
 import * as api from '../../api/index.js';
 import { useState } from 'react';
+import googleBtn from '../../assests/google_signin_buttons/web/vector/btn_google_light_normal_ios.svg';
 
 const InitState = {
 	firstName: '',
@@ -134,9 +135,13 @@ function Signup({ setUser }) {
 				</button>
 				<span className={SignUp.or}>or</span>
 				<button
-					onClick={() => signup()}
-					className={SignUp.googleBTN}>
-					<i className='fa-brands fa-google'></i> Sign up with google
+					className={SignUp.googleBTN}
+					onClick={signup}>
+					<img
+						src={googleBtn}
+						alt='Signup with google'
+					/>
+					<span>Sign up with Google</span>
 				</button>
 			</div>
 		</div>

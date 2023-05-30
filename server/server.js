@@ -13,10 +13,21 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use('/users', userRoutes);
 
-// Serve static files
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use('/', express.static(path.join(__dirname, '../client/dist')));
+app.use(
+	'/assests',
+	express.static(path.join(__dirname, '../client/dist/assests'))
+);
+
+app.use('/users', userRoutes);
+app.get('/*', (req, res) => {
+	res.sendFile(path.join(__dirname, '../client/dist/index.html'), (err) => {
+		if (err) {
+			console.error('Error sending file:', err);
+		}
+	});
+});
 
 // Function Start
 const PORT = process.env.PORT || 5000;
