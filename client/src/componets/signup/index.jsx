@@ -4,6 +4,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import * as api from '../../api/index.js';
 import { useState } from 'react';
 import googleBtn from '../../assests/google_signin_buttons/web/vector/btn_google_light_normal_ios.svg';
+import { AiOutlineUserAdd } from 'react-icons/ai';
 
 const InitState = {
 	firstName: '',
@@ -131,6 +132,7 @@ function Signup({ setUser }) {
 				<button
 					onClick={handleOnSubmit}
 					className={SignUp.loginBTN}>
+					<AiOutlineUserAdd />
 					REGISTER
 				</button>
 				<span className={SignUp.or}>or</span>

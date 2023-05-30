@@ -18,6 +18,8 @@
 
 .container2 {
 	display: flex;
+	gap: 5px;
+	align-items: center;
 }
 .linkBTN {
 	color: rgba(255, 255, 255, 0.5);

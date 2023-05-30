@@ -1,6 +1,7 @@
 import NavStyles from './Nav.module.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { AiOutlineUser } from 'react-icons/ai';
 
 const Nav = ({ user, setUser }) => {
 	const [authenticated, setAuthenticated] = useState(false);
@@ -44,6 +45,7 @@ const Nav = ({ user, setUser }) => {
 						<div>
 							<span className='d-blcok'>Account</span>
 							<div className={NavStyles.container2}>
+								<AiOutlineUser />
 								<Link
 									className={`d-block ${NavStyles.linkBTN}`}
 									to='/account/login'>
