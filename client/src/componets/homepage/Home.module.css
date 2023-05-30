@@ -72,3 +72,13 @@
 .btn:hover {
 	background-color: #2980b9;
 }
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.header dropdown {
+	margin-right: 20px;
+}

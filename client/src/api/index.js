@@ -15,6 +15,9 @@ API.interceptors.request.use((req) => {
 	return req;
 });
 
+export const signIn = (data) => API.post('/users/signin', data);
+export const signUp = (data) => API.post('/users/signup', data);
+
 export const signInGoogle = (accessToken) =>
 	API.post('/users/signin', {
 		googleAccessToken: accessToken,
@@ -25,7 +28,7 @@ export const signUpGoogle = (accessToken) =>
 		googleAccessToken: accessToken,
 	});
 
-export const stock_data = async () => {
+export const stock_data = async (list) => {
 	const response = await axios.request({
 		method: 'GET',
 		url: 'https://latest-stock-price.p.rapidapi.com/any',
@@ -34,7 +37,7 @@ export const stock_data = async () => {
 			'X-RapidAPI-Host': 'latest-stock-price.p.rapidapi.com',
 		},
 	});
-	const data = response.data.slice(0, 20);
+	const data = response.data.slice(0, list);
 	console.log(data);
 	return data;
 };

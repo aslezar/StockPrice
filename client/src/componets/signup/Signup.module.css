@@ -99,17 +99,3 @@
 .footerContainer a {
 	color: black;
 }
-
-.notreg {
-	display: inline-block;
-	margin-top: 15px;
-}
-
-.singupBTN {
-	color: black;
-}
-
-.singupBTN:hover {
-	color: black;
-	text-decoration: underline;
-}

@@ -2,8 +2,51 @@ import SignUp from './Signup.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google';
 import * as api from '../../api/index.js';
+import { useState } from 'react';
+
+const InitState = {
+	firstName: '',
+	lastName: '',
+	email: '',
+	password: '',
+	confirmPassword: '',
+};
 
 function Signup({ setUser }) {
+	const [sForm, setsForm] = useState(InitState);
+
+	const handleChange = (e) =>
+		setsForm({
+			...sForm,
+			[e.target.name]: e.target.value,
+		});
+
+	function handleOnSubmit(e) {
+		e.preventDefault();
+		if (
+			sForm.firstName !== '' &&
+			sForm.lastName !== '' &&
+			sForm.password !== '' &&
+			sForm.confirmPassword !== '' &&
+			sForm.email !== '' &&
+			sForm.password === sForm.confirmPassword &&
+			sForm.password.length >= 4
+		) {
+			const signup = async (userData) => {
+				try {
+					const { data } = await api.signUp(userData);
+
+					setUser(data);
+					console.log(data);
+					navigate('/');
+				} catch (err) {
+					console.log(err);
+				}
+			};
+			signup(sForm);
+		}
+	}
+
 	const navigate = useNavigate();
 	const signupGoogle = async (accessToken) => {
 		try {
@@ -25,20 +68,76 @@ function Signup({ setUser }) {
 	return (
 		<div className={SignUp.loginContainer}>
 			<div className={SignUp.loginContainerv2}>
-				<h1>Sign Up</h1>
+				<h1>Create your account</h1>
+
+				<div className={SignUp.inputContainer}>
+					<label>FRIST NAME</label>
+					<input
+						onChange={handleChange}
+						name='firstName'
+						placeholder='Enter your first name'
+						type='text'
+					/>
+				</div>
+				<div className={SignUp.inputContainer}>
+					<label>LAST NAME</label>
+					<input
+						name='lastName'
+						onChange={handleChange}
+						placeholder='Enter your last name'
+						type='text'
+					/>
+				</div>
+				<div className={SignUp.inputContainer}>
+					<label>EMAIL</label>
+					<input
+						name='email'
+						onChange={handleChange}
+						placeholder='Enter your email'
+						type='email'
+					/>
+				</div>
+
+				<div className={SignUp.inputContainer}>
+					<label>PASSWORD</label>
+					<input
+						name='password'
+						onChange={handleChange}
+						placeholder='Enter your password'
+						type='password'
+					/>
+				</div>
+
+				<div className={SignUp.inputContainer}>
+					<label>CONFIRM PASSWORD</label>
+					<input
+						name='confirmPassword'
+						onChange={handleChange}
+						placeholder='Retype your password'
+						type='password'
+					/>
+				</div>
+
+				<div className={SignUp.footerContainer}>
+					<div>
+						Already Signed Up? <Link to='/account/login'>Login</Link>
+					</div>
+					<div>
+						<Link to='/account/forgotpassword'>Forgot Password?</Link>
+					</div>
+				</div>
+
 				<button
-					onClick={signup}
+					onClick={handleOnSubmit}
+					className={SignUp.loginBTN}>
+					REGISTER
+				</button>
+				<span className={SignUp.or}>or</span>
+				<button
+					onClick={() => signup()}
 					className={SignUp.googleBTN}>
 					<i className='fa-brands fa-google'></i> Sign up with google
 				</button>
-				<span className={SignUp.notreg}>
-					Already registered{' '}
-					<Link
-						className={SignUp.singupBTN}
-						to='/account/login'>
-						Login
-					</Link>
-				</span>
 			</div>
 		</div>
 	);
