@@ -16,7 +16,7 @@ app.use(express.json());
 app.use('/users', userRoutes);
 
 // Serve static files
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // Function Start
 const PORT = process.env.PORT || 5000;
