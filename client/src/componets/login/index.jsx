@@ -4,7 +4,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import * as api from '../../api/index.js';
 import { useState } from 'react';
 import googleBtn from '../../assests/google_signin_buttons/web/vector/btn_google_light_normal_ios.svg';
-import { AiOutlineUser, AiOutlineCopy } from 'react-icons/ai';
+import { AiOutlineUser } from 'react-icons/ai';
 
 const Login = ({ setUser }) => {
 	const [email, setEmail] = useState('');
@@ -48,33 +48,32 @@ const Login = ({ setUser }) => {
 	}
 	const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
 
-	function copyToClipboard(text) {
-		if (window.navigator && window.navigator.clipboard) {
-			window.navigator.clipboard
-				.writeText(text)
-				.then(() => {
-					console.log('Text copied to clipboard');
-				})
-				.catch((error) => {
-					console.error('Error copying text to clipboard:', error);
-				});
-		} else {
-			console.error('Clipboard API not supported');
-		}
-	}
+	// function copyToClipboard(text) {
+	// 	if (window.navigator && window.navigator.clipboard) {
+	// 		window.navigator.clipboard
+	// 			.writeText(text)
+	// 			.then(() => {
+	// 				console.log('Text copied to clipboard');
+	// 			})
+	// 			.catch((error) => {
+	// 				console.error('Error copying text to clipboard:', error);
+	// 			});
+	// 	} else {
+	// 		console.error('Clipboard API not supported');
+	// 	}
+	// }
 
 	return (
 		<div className={LoginStyles.login}>
-			<div className={LoginStyles.dummyLogin}>
+			<div
+				className={LoginStyles.dummyLogin}
+				onClick={() => {
+					setEmail('123@abc.com');
+					setPassword('123456');
+				}}>
 				<b>
-					<i>For Demo login use -&gt;</i>
+					<i>Use Demo login</i>
 				</b>
-				<span onClick={() => copyToClipboard('123@abc.com')}>
-					Email: 123@abc.com <AiOutlineCopy />
-				</span>
-				<span onClick={() => copyToClipboard('123456')}>
-					Password: 123456 <AiOutlineCopy />
-				</span>
 			</div>
 			<div className={LoginStyles.loginContainer}>
 				<div className={LoginStyles.loginContainerv2}>

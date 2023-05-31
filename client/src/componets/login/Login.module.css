@@ -119,30 +119,16 @@
 }
 
 .dummyLogin {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	margin-top: 20px;
-}
-
-.dummyLogin b {
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-
-.dummyLogin span {
-	display: flex;
-	align-items: center;
 	cursor: pointer;
-	margin-bottom: 5px;
+	width: fit-content;
 }
 
-.dummyLogin span:hover {
+.dummyLogin:hover {
 	text-decoration: underline;
 }
 
-.dummyLogin span svg {
-	margin-left: 5px;
+.login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }

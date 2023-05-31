@@ -94,18 +94,21 @@ const Dropdown = ({ options, selectedOption, onSelect }) => {
 	};
 
 	return (
-		<select
-			value={selectedOption}
-			onChange={(e) => handleOptionSelect(e.target.value)}>
-			<option value=''>Select an option</option>
-			{options.map((option) => (
-				<option
-					key={option}
-					value={option}>
-					{option}
-				</option>
-			))}
-		</select>
+		<div className={HomeStyle.dropdown_container}>
+			<select
+				className={HomeStyle.dropdown_select}
+				value={selectedOption}
+				onChange={(e) => handleOptionSelect(e.target.value)}>
+				<option value=''>Select an option</option>
+				{options.map((option) => (
+					<option
+						key={option}
+						value={option}>
+						{option}
+					</option>
+				))}
+			</select>
+		</div>
 	);
 };
 
