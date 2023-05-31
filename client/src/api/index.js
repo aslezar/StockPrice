@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://stockprice-eh6m.onrender.com' });
+const API = axios.create({ baseURL: 'http://localhost:5000' });
+// const API = axios.create({ baseURL: 'http://stockprice-eh6m.onrender.com' });
 
 API.interceptors.request.use((req) => {
 	if (
