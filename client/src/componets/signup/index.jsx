@@ -5,6 +5,7 @@ import * as api from '../../api/index.js';
 import { useState } from 'react';
 import googleBtn from '../../assests/google_signin_buttons/web/vector/btn_google_light_normal_ios.svg';
 import { AiOutlineUserAdd } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 
 const InitState = {
 	firstName: '',
@@ -43,9 +44,13 @@ function Signup({ setUser }) {
 					navigate('/');
 				} catch (err) {
 					console.log(err);
+					toast.error(err.response.data.message);
 				}
 			};
 			signup(sForm);
+		} else {
+			console.log('error');
+			toast.error('Please enter valid details');
 		}
 	}
 
@@ -58,6 +63,7 @@ function Signup({ setUser }) {
 			navigate('/');
 		} catch (err) {
 			console.log(err);
+			toast.error(err.response.data.message);
 		}
 	};
 

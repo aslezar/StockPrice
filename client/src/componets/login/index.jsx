@@ -5,6 +5,7 @@ import * as api from '../../api/index.js';
 import { useState } from 'react';
 import googleBtn from '../../assests/google_signin_buttons/web/vector/btn_google_light_normal_ios.svg';
 import { AiOutlineUser } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 
 const Login = ({ setUser }) => {
 	const [email, setEmail] = useState('');
@@ -18,12 +19,16 @@ const Login = ({ setUser }) => {
 					const { data } = await api.signIn(userData);
 					setUser(data);
 					console.log(data);
+					toast.success('Login successful!');
 					navigate('/');
 				} catch (err) {
-					console.log(err);
+					console.log(err.response);
+					toast.error(err.response.data.message);
 				}
 			};
 			signin({ email, password });
+		} else {
+			toast.error('Please enter email and password');
 		}
 	}
 
@@ -38,9 +43,11 @@ const Login = ({ setUser }) => {
 				const { data } = await api.signInGoogle(accessToken);
 				setUser(data);
 				console.log(data);
+				toast.success('Login successful!');
 				navigate('/');
 			} catch (err) {
 				console.log(err);
+				toast.error('Login failed!');
 			}
 		};
 

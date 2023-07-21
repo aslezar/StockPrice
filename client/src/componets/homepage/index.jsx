@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 import { stock_data } from '../../api/index.js';
 import HomeStyle from './Home.module.css';
+import { toast } from 'react-toastify';
 
 const HomePage = () => {
 	const [stock, setStock] = useState([]);
 	const [selectedOption, setSelectedOption] = useState(20);
 	const getStock = async (list) => {
 		try {
-			const res = await stock_data(list);
+			let res = [];
+			while (res.length === 0) {
+				res = await stock_data(list);
+			}
 			setStock(Array.from(res));
 		} catch (error) {
 			console.error(error);
@@ -16,6 +20,7 @@ const HomePage = () => {
 
 	useEffect(() => {
 		getStock(selectedOption);
+		toast.success(selectedOption + ' stocks fetched!');
 	}, [selectedOption]);
 	return (
 		<div>

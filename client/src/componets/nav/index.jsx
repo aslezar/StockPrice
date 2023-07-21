@@ -2,6 +2,7 @@ import NavStyles from './Nav.module.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 
 const Nav = ({ user, setUser }) => {
 	const [authenticated, setAuthenticated] = useState(false);
@@ -17,6 +18,7 @@ const Nav = ({ user, setUser }) => {
 	function handleLogOut(e) {
 		e.preventDefault();
 		setUser(null);
+		toast.success('Logout successful!');
 	}
 	return (
 		<nav className={NavStyles.mainNav}>
