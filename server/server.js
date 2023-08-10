@@ -1,6 +1,9 @@
 const express = require('express');
 const connectDB = require('./db/connect');
+const helmet = require('helmet');
 const cors = require('cors');
+const xss = require('xss-clean');
+const rateLimiter = require('express-rate-limit');
 require('dotenv').config();
 const path = require('path');
 
@@ -11,8 +14,16 @@ const userRoutes = require('./routes/userRoutes');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(
+	rateLimiter({
+		windowMs: 15 * 60 * 1000, //15 minutes
+		max: 100, //limit each IP to 100 requests per windowMs
+	})
+);
 app.use(express.json());
+app.use(helmet()); //set security HTTP headers
+app.use(cors()); //enable CORS
+app.use(xss()); //prevent XSS attacks
 
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 app.use(
