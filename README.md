@@ -21,7 +21,7 @@ To rund the App locally on your machine, follow these steps:
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/aslezar/giga-growth-ventures-assignment
+   git clone https://github.com/aslezar/StockPrice
    ```
 
 2. Navigate to the project directory:
